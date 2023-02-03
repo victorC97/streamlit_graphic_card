@@ -28,8 +28,10 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def streamlit_lchart_card(title, df, x, y, labels, rounding, defaultColor="#0000FF", thresh=None, threshColor="rgb(255, 90, 132)", key=None):
+def streamlit_lchart_card(title, df, x, y, labels, rounding, defaultColor="#0000FF", thresh=None, threshColor="rgb(255, 90, 132)", format="%d/%m %Hh", key=None):
     x_list = df[x].to_numpy()
+    if type(x_list[0]) == np.datetime64:
+        x_list = [datetime.fromtimestamp(x.astype(datetime)/1000000000).strftime(format) for x in x_list]
     y_list = df[y].to_numpy()
     mean_y = round(df[y].mean(), rounding)
     max_y = round(df[y].max(), rounding)
@@ -49,14 +51,15 @@ if not _RELEASE:
 
     st.set_page_config(layout="wide")
 
-    nb_samples = 31
+    t = [datetime.fromtimestamp(d.timestamp()) for d in
+         pd.date_range(start=datetime(year=2023, month=1, day=31, hour=0, minute=0), end=datetime(year=2023, month=2, day=1, hour=0, minute=0), freq="3h")]
+
+    nb_samples = len(t)
     m_temp = 20.4
     m_pH = 6.79
     m_nitrate = 100.3
     m_ammonia = 2.9
 
-    t = [d.date() for d in
-         pd.date_range(start=datetime(year=2023, month=1, day=1), end=datetime(year=2023, month=1, day=31), freq="D")]
     temps = [round(m, 1) for m in np.random.normal(m_temp, 2, nb_samples)]
     pHs = [round(m, 2) for m in np.random.normal(m_pH, 1, nb_samples)]
     nitrates = [round(m, 2) for m in np.random.normal(m_nitrate, 20, nb_samples)]
@@ -72,7 +75,7 @@ if not _RELEASE:
     multiple_graphs = st.columns(4)
     with multiple_graphs[0]:
         streamlit_lchart_card(title="Température", df=df_temps, x="date", y="measure",
-                               labels={"measure": "°C", "date": "Date"}, defaultColor="rgb(255, 180, 15)", thresh=20, threshColor="rgb(255, 90, 132)", rounding=1, key="streamlit_temp_lchart_card")
+                               labels={"measure": "°C", "date": "Date"}, defaultColor="rgb(255, 180, 15)", thresh=20, threshColor="rgb(255, 90, 132)", rounding=1, format="%d/%m %Hh", key="streamlit_temp_lchart_card")
     with multiple_graphs[1]:
         streamlit_lchart_card(title="Nitrate", df=df_nitrates, x="date", y="measure",
                                labels={"measure": "mg/L", "date": "Date"}, defaultColor="rgb(132, 99, 255)", thresh=95.2, rounding=2, key="streamlit_nitrate_lchart_card")

@@ -39,11 +39,15 @@ type Data = Datum[]
 
 const arrowTableToArray = (t: ArrowTable): Data => {
   const n = t.dataRows
-  const res: Data = []
-  for (let i = 1; i <= n; i++) {
-    res.push(t.getCell(i, 1).content as Datum)
+  if (t instanceof Array) {
+    return t
+  } else {
+    const res: Data = []
+    for (let i = 1; i <= n; i++) {
+      res.push(t.getCell(i, 1).content as Datum)
+    }
+    return res
   }
-  return res
 }
 
 const getMonthString = (month: number) => {
@@ -113,11 +117,13 @@ const thresHoldDisplay = (thresh: number|null) => {
   }
 }
 
-const tablesToData = (x: Data, y: Data, title: string, defaultColor: string, thresh: number|null, threshColor: string) => {
+const tablesToData = (x: Data, y: Data, title: string, defaultColor: string, thresh: number|null, threshColor: string, format: string) => {
     let abs = []
     if (x[0] instanceof Date) {
       // @ts-ignore
-      abs = x.map((date: Date) => `${date.getDate()}/${getMonthString(date.getMonth())}`)
+      const temp_dates = x.map((date: Date) => new Date(date.getTime()*1000000))
+      // @ts-ignore
+      abs = temp_dates.map((date: Date) => date.toLocaleString())
     } else {
       abs = x
     }
@@ -173,7 +179,8 @@ class StreamlitLChartCard extends StreamlitComponentBase<State> {
   private defaultColor: string = this.props.args["defaultColor"]
   private threshColor: string = this.props.args["threshColor"]
   private thresh: number|null = this.props.args["thresh"]
-  private data = tablesToData(this.x, this.y, this.title, this.defaultColor, this.thresh, this.threshColor)
+  private format = this.props.args["format"]
+  private data = tablesToData(this.x, this.y, this.title, this.defaultColor, this.thresh, this.threshColor, this.format)
 
   public render = (): ReactNode => {
 

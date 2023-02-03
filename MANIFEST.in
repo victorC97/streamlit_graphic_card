@@ -1,1 +1,1 @@
-recursive-include streamlit_graphic_card/frontend/build *
+recursive-include streamlit_lchart_card/frontend/build *

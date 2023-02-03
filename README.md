@@ -1,10 +1,10 @@
-# Streamlit Graphic Card
+# Streamlit LChart Card
 
 ## Installation
 
 Install the package with the following command :
 ```
-pip3 install streamlit_graphic_card
+pip3 install streamlit_lchart_card
 ```
 
 You can use Python>=3.6 and Streamlit to use this component.
@@ -14,7 +14,7 @@ You can use Python>=3.6 and Streamlit to use this component.
 Streamlit component using Chartjs/React/MUI to display dataframe numeric data into a line chart.
 <div style='text-align: center;'>
     <img alt="example" src="static/interactive.png" width=200>
-    <p>Graphic card example</p>
+    <p>Chart card example</p>
 </div>
 Xaxis can be either numeric|string|Date object. For my personal usage, I removed year information from dates.
 
@@ -28,7 +28,7 @@ st.set_page_config(layout="wide")
 As I'm not a pro in frontend, I used fixed size for this component (h=250px, w=290px). You can display up to 4 cards in one row with ````st.columns()````. An example is given in **example.py**.
 <div style='text-align: center;'>
     <img alt="example" src="static/example.png" width=500>
-    <p>4 graphic cards</p>
+    <p>4 Chart cards</p>
 </div>
 
 ## Arguments

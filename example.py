@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from streamlit_graphic_card import streamlit_graphic_card
+from streamlit_lchart_card import streamlit_lchart_card
 
 st.set_page_config(layout="wide")
 
@@ -28,18 +28,18 @@ df_water_levels = pd.DataFrame({"date": t, "measure": water_levels})
 
 multiple_graphs = st.columns(4)
 with multiple_graphs[0]:
-    streamlit_graphic_card(title="Température", df=df_temps, x="date", y="measure",
+    streamlit_lchart_card(title="Température", df=df_temps, x="date", y="measure",
                            labels={"measure": "°C", "date": "Date"}, defaultColor="rgb(255, 180, 15)", thresh=20,
-                           threshColor="rgb(255, 90, 132)", rounding=1, key="streamlit_temp_graphic_card")
+                           threshColor="rgb(255, 90, 132)", rounding=1, key="streamlit_temp_lchart_card")
 with multiple_graphs[1]:
-    streamlit_graphic_card(title="Nitrate", df=df_nitrates, x="date", y="measure",
+    streamlit_lchart_card(title="Nitrate", df=df_nitrates, x="date", y="measure",
                            labels={"measure": "mg/L", "date": "Date"}, defaultColor="rgb(132, 99, 255)", thresh=95.2,
-                           rounding=2, key="streamlit_nitrate_graphic_card")
+                           rounding=2, key="streamlit_nitrate_lchart_card")
 with multiple_graphs[2]:
-    streamlit_graphic_card(title="pH", df=df_pHs, x="date", y="measure",
+    streamlit_lchart_card(title="pH", df=df_pHs, x="date", y="measure",
                            labels={"measure": "", "date": "Date"}, defaultColor="rgb(99, 255, 132)", thresh=6,
-                           rounding=2, key="streamlit_pH_graphic_card")
+                           rounding=2, key="streamlit_pH_lchart_card")
 with multiple_graphs[3]:
-    streamlit_graphic_card(title="Ammoniaque", df=df_ammonias, x="date", y="measure",
+    streamlit_lchart_card(title="Ammoniaque", df=df_ammonias, x="date", y="measure",
                            labels={"measure": "mg/L", "date": "Date"}, defaultColor="rgb(90, 90, 90)", thresh=2.87,
-                           rounding=2, key="streamlit_ammonia_graphic_card")
+                           rounding=2, key="streamlit_ammonia_lchart_card")

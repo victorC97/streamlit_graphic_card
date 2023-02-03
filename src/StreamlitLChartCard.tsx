@@ -5,9 +5,6 @@ import {
 } from "streamlit-component-lib"
 import React, { ReactNode } from "react"
 import {Box, Card, CardContent, Typography} from "@mui/material"
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -166,7 +163,7 @@ const tablesToData = (x: Data, y: Data, title: string, defaultColor: string, thr
     }
   }
 
-class StreamlitGraphicCard extends StreamlitComponentBase<State> {
+class StreamlitLChartCard extends StreamlitComponentBase<State> {
   public state: State = {}
   private title: string = this.props.args["title"]
   private x: Data = arrowTableToArray(this.props.args["x"])
@@ -298,4 +295,4 @@ class StreamlitGraphicCard extends StreamlitComponentBase<State> {
   }
 }
 
-export default withStreamlitConnection(StreamlitGraphicCard)
+export default withStreamlitConnection(StreamlitLChartCard)

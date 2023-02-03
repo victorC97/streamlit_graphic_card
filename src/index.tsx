@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import StreamlitGraphicCard from "./StreamlitGraphicCard"
+import StreamlitLChartCard from "./StreamlitLChartCard"
 
 ReactDOM.render(
   <React.StrictMode>
-    <StreamlitGraphicCard />
+    <StreamlitLChartCard />
   </React.StrictMode>,
   document.getElementById("root")
 )

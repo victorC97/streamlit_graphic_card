@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from streamlit_lchart_card import streamlit_lchart_card
 
 st.set_page_config(layout="wide")
 

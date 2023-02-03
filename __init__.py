@@ -1,5 +1,7 @@
 import os
 import streamlit.components.v1 as components
+import numpy as np
+from datetime import datetime
 
 _RELEASE = True
 
@@ -28,6 +30,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
+
 def streamlit_lchart_card(title, df, x, y, labels, rounding, defaultColor="#0000FF", thresh=None, threshColor="rgb(255, 90, 132)", format="%d/%m %Hh", key=None):
     x_list = df[x].to_numpy()
     if type(x_list[0]) == np.datetime64:
@@ -45,9 +48,7 @@ def streamlit_lchart_card(title, df, x, y, labels, rounding, defaultColor="#0000
 # app: `$ streamlit run my_component/__init__.py`
 if not _RELEASE:
     import streamlit as st
-    import numpy as np
     import pandas as pd
-    from datetime import datetime
 
     st.set_page_config(layout="wide")
 

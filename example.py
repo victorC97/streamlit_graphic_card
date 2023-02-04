@@ -6,9 +6,8 @@ from streamlit_lchart_card import streamlit_lchart_card
 
 st.set_page_config(layout="wide")
 
-t = [datetime.fromtimestamp(d.timestamp()) for d in
-     pd.date_range(start=datetime(year=2023, month=1, day=31, hour=0, minute=0),
-                   end=datetime(year=2023, month=2, day=1, hour=0, minute=0), freq="3h")]
+t = pd.date_range(start=datetime(year=2023, month=1, day=31, hour=0, minute=0),
+                  end=datetime(year=2023, month=2, day=1, hour=0, minute=0), freq="3h")
 
 nb_samples = len(t)
 m_temp = 20.4

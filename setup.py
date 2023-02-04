@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="streamlit-lchart-card",
-    version="0.0.3",
+    version="1.0.1",
     author="victorC97",
     author_email="victor.cour@telecomnancy.net",
     description="Chart card component",

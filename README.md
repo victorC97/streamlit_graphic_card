@@ -32,13 +32,13 @@ As I'm not a pro in frontend, I used fixed size for this component (h=250px, w=2
     <p>4 Chart cards</p>
 </div>
 
-### v.0.0.3
+### v.1.0.1
 
 Added an argument named format for datetime axis only.
 
 <div style='text-align: center;'>
     <img alt="example2" src="static/v0.0.3.png" width=500>
-    <p>v0.0.3 datetime axis</p>
+    <p>v1.0.1 datetime axis</p>
 </div>
 
 ## Arguments
